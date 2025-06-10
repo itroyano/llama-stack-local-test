@@ -1,0 +1,3 @@
+llama-stack-client
+fire
+requests
