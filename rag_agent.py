@@ -16,16 +16,12 @@ client.vector_dbs.register(
 
 # Create Documents
 urls = [
-    "memory_optimizations.rst",
-    "chat.rst",
-    "llama3.rst",
-    "qat_finetune.rst",
-    "lora_finetune.rst",
+    "getting-started.adoc",
 ]
 documents = [
     Document(
         document_id=f"num-{i}",
-        content=f"https://raw.githubusercontent.com/pytorch/torchtune/main/docs/source/tutorials/{url}",
+        content=f"https://raw.githubusercontent.com/validatedpatterns/docs/refs/heads/main/content/patterns/ansible-edge-gitops/{url}",
         mime_type="text/plain",
         metadata={},
     )
@@ -58,7 +54,7 @@ rag_agent = Agent(
 
 session_id = rag_agent.create_session(session_name=f"s{uuid.uuid4().hex}")
 
-turns = ["what is torchtune", "tell me about dora"]
+turns = ["what are the infrastructure Elements of this Pattern?",]
 
 for t in turns:
     print("user>", t)
