@@ -27,13 +27,43 @@ uv pip install -r requirements.txt
 # 4. Test basic functionality
 llama-stack-client inference chat-completion --message "tell me a joke"
 
-# 5. Run the comprehensive ValidatedPatterns RAG agent
+# 5. Run the RAG agent (choose one option):
+
+# Option A: Command-line interface
 uv run python rag_agent.py
+
+# Option B: Web interface (recommended)
+uv run python rag_web_ui.py
+# Then open http://localhost:8080 in your browser
 ```
+
+## 🌐 Web Interface
+
+The RAG agent now includes a modern web interface accessible at `http://localhost:8080`:
+
+### **Features:**
+- **🎨 Modern Chat Interface**: Clean, responsive design with chat bubbles
+- **📊 Real-time Progress**: Live progress tracking during knowledge base initialization
+- **💡 Example Questions**: Pre-loaded example questions to get you started
+- **⚡ Real-time Responses**: Streaming responses with typing indicators
+- **📱 Mobile Responsive**: Works on desktop, tablet, and mobile devices
+- **🔄 Status Monitoring**: Real-time connection and initialization status
+
+### **How to Use:**
+1. **Start the web server**: `python rag_web_ui.py`
+2. **Open your browser**: Navigate to `http://localhost:8080`
+3. **Initialize the knowledge base**: Click "Initialize Knowledge Base" (takes ~2 minutes)
+4. **Start chatting**: Ask questions about ValidatedPatterns!
+
+### **Web Interface Screenshots:**
+- **Initialization Screen**: Progress bar showing document indexing
+- **Chat Interface**: Clean chat bubbles with user and assistant messages
+- **Example Questions**: Quick-start buttons for common queries
+- **Status Indicator**: Real-time system status in the header
 
 ## 🎯 What the RAG Agent Does
 
-The RAG agent indexes documents from the ValidatedPatterns ecosystem, creating a comprehensive knowledge base that includes:
+The RAG agent indexes **147 documents** from the ValidatedPatterns ecosystem, creating a comprehensive knowledge base that includes:
 
 ### 📚 **Core Documentation** (validatedpatterns/docs)
 - Getting started guides, pattern documentation
@@ -63,6 +93,7 @@ The RAG agent indexes documents from the ValidatedPatterns ecosystem, creating a
 
 The RAG agent demonstrates its knowledge by answering 6 comprehensive questions:
 
+### 1. **Infrastructure Elements Query**
 ```
 user> What are the infrastructure Elements of this Pattern?
 
@@ -77,12 +108,14 @@ The multicloud-gitops pattern is a set of best practices and tools that help org
 7. **Continuous Integration and Delivery**: Automated testing and deployment of code changes to production environments.
 ```
 
+### 2. **Available Patterns Query**
 ```
 user> What patterns are available in the validatedpatterns organization?
 
 multicloud-gitops, ansible-edge-gitops, multicluster-devsecops
 ```
 
+### 3. **Installation Instructions**
 ```
 user> How do I install the multicloud-gitops pattern?
 
@@ -96,6 +129,7 @@ To install the `multicloud-gitops` pattern, follow these steps:
 6. **Verify installation**: Verify that the pattern has been installed successfully by checking the OpenShift console or using the `oc` command-line tool.
 ```
 
+### 4. **Architecture Details**
 ```
 user> What is the architecture of the ansible-edge-gitops pattern?
 
@@ -113,6 +147,7 @@ Key features include:
 - **OpenShift Support**: Supports OpenShift 4.12 and later versions
 ```
 
+### 5. **Red Hat Technologies**
 ```
 user> What Red Hat technologies are used in these patterns?
 
@@ -126,6 +161,7 @@ Based on the patterns, the following Red Hat technologies are used:
 6. **Red Hat OpenShift**: Container application platform with comprehensive Kubernetes tools
 ```
 
+### 6. **Customization Guide**
 ```
 user> How do I customize a validated pattern for my environment?
 
@@ -153,6 +189,8 @@ To customize a validated pattern for your environment, follow these steps:
 - **Real-time Responses**: Interactive Q&A with contextual understanding
 - **Expert Knowledge**: Deep insights into installation, architecture, and customization
 - **Multi-Pattern Support**: Knowledge spanning all major validated patterns
+- **Web Interface**: Modern, responsive chat interface for easy interaction
+- **Command-line Interface**: Traditional CLI for automation and scripting
 
 ## 🛠️ Technical Details
 
@@ -161,6 +199,8 @@ To customize a validated pattern for your environment, follow these steps:
 - **LLM**: `llama3.2:3b` for response generation
 - **Chunk Size**: 512 tokens for optimal context retrieval
 - **Document Sources**: Direct GitHub raw file URLs for up-to-date content
+- **Web Framework**: Flask for the web interface
+- **Frontend**: Modern HTML/CSS/JavaScript with responsive design
 
 ## 📈 Performance Metrics
 
@@ -168,16 +208,25 @@ To customize a validated pattern for your environment, follow these steps:
 - **Query Response Time**: 5-30 seconds depending on complexity
 - **Context Retrieval**: Top 5 relevant chunks per query
 - **Memory Usage**: ~2GB for full knowledge base
+- **Web Interface**: Real-time status updates and progress tracking
 
 ## 🔧 Customization
 
 To modify the questions or add new patterns:
 
-1. Edit the `turns` array in `rag_agent.py`
-2. Add new document sources to the respective content arrays
-3. Adjust chunk size or retrieval parameters as needed
-4. Restart the agent to apply changes
+1. Edit the `turns` array in `rag_agent.py` (CLI version)
+2. Modify the examples endpoint in `rag_web_ui.py` (Web version)
+3. Add new document sources to the respective content arrays
+4. Adjust chunk size or retrieval parameters as needed
+5. Restart the agent to apply changes
 
 ## 🤝 Contributing
 
 This RAG agent demonstrates comprehensive knowledge management for the ValidatedPatterns ecosystem. It serves as a foundation for building production-ready pattern recommendation and support systems.
+
+### **File Structure:**
+- `rag_agent.py` - Command-line RAG agent with 6 predefined questions
+- `rag_web_ui.py` - Flask web application with interactive chat interface
+- `templates/index.html` - Modern, responsive web interface
+- `requirements.txt` - Python dependencies including Flask
+- `README.md` - Comprehensive documentation
